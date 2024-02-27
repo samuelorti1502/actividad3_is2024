@@ -114,3 +114,83 @@ cliente1 = Cliente(nit)
 
 print("Información ingresada:")
 cliente1.mostrar_informacion()
+
+class Empleado(Persona):
+    def __init__(self):
+        super().__init__()
+        self._codigo_empleado = input("Ingrese el código de empleado: ")
+        self._cargo = input("Ingrese el cargo del empleado: ")
+        self._salario = float(input("Ingrese el salario del empleado: "))
+
+    @property
+    def codigo_empleado(self):
+        return self._codigo_empleado
+
+    @codigo_empleado.setter
+    def codigo_empleado(self, value):
+        self._codigo_empleado = value
+
+    @property
+    def cargo(self):
+        return self._cargo
+
+    @cargo.setter
+    def cargo(self, value):
+        self._cargo = value
+
+    @property
+    def salario(self):
+        return self._salario
+
+    @salario.setter
+    def salario(self, value):
+        self._salario = value
+
+    def __str__(self):
+        return f"{super().__str__()}\n" \
+               f"Código de empleado: {self.codigo_empleado}\n" \
+               f"Cargo: {self.cargo}\n" \
+               f"Salario: {self.salario}"
+
+    def ver_informacion(self):
+        super().ver_informacion()
+        print(f"Código de empleado: {self.codigo_empleado}")
+        print(f"Cargo: {self.cargo}")
+        print(f"Salario: {self.salario}")
+
+    def modificar_informacion(self):
+        super().modificar_informacion()
+        while True:
+            opcion = input("¿Qué desea modificar?\n"
+                           "6. Código de empleado\n"
+                           "7. Cargo\n"
+                           "8. Salario\n"
+                           "0. Salir\n"
+                           "Ingrese su opción: ")
+            if opcion == "0":
+                break
+            elif opcion == "6":
+                self.codigo_empleado = input("Ingrese el nuevo código de empleado: ")
+            elif opcion == "7":
+                self.cargo = input("Ingrese el nuevo cargo: ")
+            elif opcion == "8":
+                self.salario = float(input("Ingrese el nuevo salario: "))
+            else:
+                print("Opción inválida.")
+
+persona1 = Empleado()
+
+while True:
+    opcion = input("¿Qué desea hacer?\n"
+                   "1. Ver información\n"
+                   "2. Modificar información\n"
+                   "0. Salir\n"
+                   "Ingrese su opción: ")
+    if opcion == "0":
+        break
+    elif opcion == "1":
+        persona1.ver_informacion()
+    elif opcion == "2":
+        persona1.modificar_informacion()
+    else:
+        print("Opción inválida.")
